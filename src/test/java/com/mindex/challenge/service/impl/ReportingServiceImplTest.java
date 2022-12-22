@@ -99,7 +99,7 @@ public class ReportingServiceImplTest {
                 restTemplate.getForEntity(reportingUrl,
                         Reporting.class,
                         dummyEmployees.get("manager").getEmployeeId()).getBody();
-        assertEquals(1, reports.getNumberOfReports());
+        assertEquals(1, reports.getNumberOfReports()); //Testcase fails due to assertion error[expected 1 but gets 0]
     }
 
     private static void assertReportingEquivalence(Reporting expected, Reporting actual) {

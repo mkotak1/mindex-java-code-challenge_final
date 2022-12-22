@@ -23,7 +23,9 @@ public class ReportingServiceImpl implements ReportingService {
     @Override
     public Reporting read(String id) {
         LOG.debug("Reading employee reporting structure with id [{}]", id);
-        if (id == null || id.equals("")) throw new IllegalArgumentException("Employee Id cannot be null");
+        if (id == null || id.equals("")) {
+            throw new IllegalArgumentException("Employee Id cannot be null");
+        }
 
         Employee employee = employeeRepository.findByEmployeeId(id);
 
