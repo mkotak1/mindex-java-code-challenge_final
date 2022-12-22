@@ -9,7 +9,7 @@ public class Compensation {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date effectiveDate;
     private String employeeId;
-    private float salary;
+    private int salary;
     public Compensation() {
     }
     public Date getEffectiveDate() {
@@ -24,7 +24,7 @@ public class Compensation {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 

@@ -42,14 +42,14 @@ public class ReportingServiceImplTest {
         emp.setDepartment("Engineering");
         emp.setPosition("Manager");
         emp.setEmployeeId("b7839309-5de1c168beb3");
-        dummyEmployees.put("Manager", emp);
+        dummyEmployees.put("manager", emp);
 
         Employee subEmp = new Employee();
         subEmp.setFirstName("Sub");
         subEmp.setLastName("Emp");
         subEmp.setDepartment("Engineering");
         subEmp.setPosition("Developer");
-        dummyEmployees.put("Developer", subEmp);
+        dummyEmployees.put("developer", subEmp);
     }
 
     @Before
@@ -59,15 +59,15 @@ public class ReportingServiceImplTest {
         employeeUrl =  "http://localhost:" + port +"/employee";
 
 
-        Employee manager = restTemplate.postForEntity(employeeUrl, dummyEmployees.get("Manager"), Employee.class).getBody();
-        Employee subEmp = restTemplate.postForEntity(employeeUrl, dummyEmployees.get("Developer"), Employee.class).getBody();
+        Employee manager = restTemplate.postForEntity(employeeUrl, dummyEmployees.get("manager"), Employee.class).getBody();
+        Employee subEmp = restTemplate.postForEntity(employeeUrl, dummyEmployees.get("developer"), Employee.class).getBody();
 
         ArrayList<Employee> managerReports = new ArrayList<>();
         managerReports.add(subEmp);
-        dummyEmployees.get("Manager").setDirectReports(managerReports);
+        dummyEmployees.get("manager").setDirectReports(managerReports);
 
-        dummyEmployees.put("Manager", manager);
-        dummyEmployees.put("Developer", subEmp);
+        dummyEmployees.put("manager", manager);
+        dummyEmployees.put("developer", subEmp);
 
     }
 
@@ -83,7 +83,7 @@ public class ReportingServiceImplTest {
         Reporting reports =
                 restTemplate.getForEntity(reportingUrl,
                         Reporting.class,
-                        dummyEmployees.get("Developer").getEmployeeId()).getBody();
+                        dummyEmployees.get("developer").getEmployeeId()).getBody();
         assertEquals(0, reports.getNumberOfReports());
     }
 
@@ -98,7 +98,7 @@ public class ReportingServiceImplTest {
         Reporting reports =
                 restTemplate.getForEntity(reportingUrl,
                         Reporting.class,
-                        dummyEmployees.get("Manager").getEmployeeId()).getBody();
+                        dummyEmployees.get("manager").getEmployeeId()).getBody();
         assertEquals(1, reports.getNumberOfReports());
     }
 

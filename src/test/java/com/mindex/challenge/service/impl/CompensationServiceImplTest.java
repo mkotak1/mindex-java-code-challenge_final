@@ -41,7 +41,7 @@ public class CompensationServiceImplTest {
     public void testCreateRead() {
         Compensation testCompensation = new Compensation();
         testCompensation.setEmployeeId("16a596ae-edd3-4847-99fe-c4518e82c86f");
-        testCompensation.setSalary(1000.00f);
+        testCompensation.setSalary(1000);
         testCompensation.setEffectiveDate(new Date(20222212));
 
         Compensation testCreateCompensation = restTemplate.postForEntity(compensationUrl, testCompensation, Compensation.class).getBody();
